@@ -22,7 +22,7 @@ function makeBoard() {
 
   // return board.push(Array.from(Array(HEIGHT), () => new Array(WIDTH).fill(undefined)));
 
-  return board = (Array(HEIGHT).fill(null).map(() => Array(WIDTH))); // realized I was pushing a completed 2d array matrix into an empty array causing it to become 3d instead of 2d
+  return board = (Array(HEIGHT).fill(null).map(() => Array(WIDTH).fill(null))); // realized I was pushing a completed 2d array matrix into an empty array causing it to become 3d instead of 2d
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -85,7 +85,7 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   // TODO: pop up alert message
-  return alert('THIS IS THE END');
+  return alert(msg);
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -112,8 +112,8 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  if (!board.every( xAxis => xAxis.every(yAxis => yAxis)) === null) {
-    return endGame();
+  if (board.every( xAxis => xAxis.every(yAxis => yAxis))) {
+    return endGame('two worthy opponents');
   }
 
   // switch players
